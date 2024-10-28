@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications ClinLab</title>
+    <link rel="icon" type="image/png" href="ClinLab.png">
+    <style>
+        body {
+            background-color: #262626; /* Fondo general */
+            font-family: 'Rethink Sans', sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar horizontalmente */
+        }
+
+        .home-button {
+            background-color: transparent; /* Fondo transparente */
+            color: white; /* Texto blanco */
+            border: 2px solid #ff003c; /* Borde del botón */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            font-size: 20px; /* Tamaño de fuente del botón */
+            cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+            margin-bottom: 20px; /* Espacio debajo del botón */
+            transition: background-color 0.3s, color 0.3s; /* Transición suave */
+        }
+
+        .home-button:hover {
+            background-color: rgba(255, 0, 60, 0.3); /* Color al pasar el ratón */
+            color: #ff003c; /* Cambiar color de texto al pasar el ratón */
+        }
+
+        .applications-container {
+            background-color: #2f2f2f; /* Fondo gris para el contenedor de aplicaciones */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%; /* Ancho del contenedor */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            text-align: center; /* Centrar el título */
+            margin-bottom: 20px; /* Espacio debajo del título */
+            font-size: 24px; /* Tamaño de fuente aumentado */
+            color: white; /* Color del título */
+        }
+
+        .application {
+            background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+            color: #ffffff; /* Texto blanco */
+            border-radius: 30px; /* Bordes redondeados */
+            padding: 20px; /* Aumenté el padding */
+            margin: 10px 0; /* Espacio entre aplicaciones */
+            display: flex; /* Para la imagen a la izquierda */
+            align-items: center; /* Centrar verticalmente */
+            justify-content: flex-start; /* Alinear a la izquierda */
+            width: 100%; /* Ancho completo para las aplicaciones */
+            font-size: 22px; /* Tamaño de fuente de la aplicación */
+        }
+
+        .application img {
+            width: 80px; /* Ajusta el tamaño de la imagen */
+            height: auto; /* Mantener la proporción de la imagen */
+            margin-right: 20px; /* Espacio entre la imagen y el texto */
+        }
+
+        .application-title {
+            font-size: 24px; /* Tamaño del título de la aplicación */
+            font-weight: bold; /* Negrita para el título */
+            margin-bottom: 10px; /* Espacio debajo del título */
+        }
+
+        .application-description {
+            margin: 0; /* Eliminar margen para evitar el desplazamiento */
+            font-size: 18px; /* Tamaño de fuente de la descripción */
+        }
+
+        .application-button {
+            background-color: #ff003c; /* Fondo del botón */
+            color: white; /* Texto blanco */
+            border: none; /* Sin borde */
+            border-radius: 5px; /* Bordes redondeados */
+            padding: 15px 20px; /* Aumentar el espaciado interno para hacerlo más grande */
+            cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+            font-size: 18px; /* Tamaño de fuente del botón */
+            transition: background-color 0.3s; /* Transición suave */
+            margin-left: auto; /* Empujar el botón a la derecha */
+        }
+
+        .application-button:hover {
+            background-color: rgba(255, 0, 60, 0.7); /* Color al pasar el ratón */
+        }
+
+        .discord-button {
+            position: absolute; /* Posicionamiento absoluto */
+            bottom: 20px; /* Espacio desde el fondo */
+            right: 40px; /* 40 píxeles a la izquierda del borde derecho */
+            background: none; /* Sin fondo */
+            border: none; /* Sin borde */
+            cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+        }
+
+        .discord-button img {
+            width: 50px; /* Ajusta el tamaño de la imagen */
+            height: auto; /* Mantener la proporción de la imagen */
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="window.location.href='index.html'">Home</button> <!-- Botón Home -->
+
+    <div class="applications-container">
+        <h1>Applications</h1> <!-- Título centrado -->
+        
+        <div class="application">
+            <img src="esskeetit.png" alt="Aplicación 1">
+            <div>
+                <div class="application-title">Esskeetit</div> <!-- Título de la aplicación -->
+                <div class="application-description">Es un potente optimizador diseñado para mejorar el rendimiento de tus juegos y aplicaciones. Con la capacidad de aumentar tus fotogramas por segundo (FPS) 110/180.</div>
+            </div>
+            <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 19.99</button> <!-- Cambia el texto y el enlace -->
+        </div>
+        
+        <div class="application">
+            <img src="clinxtreme.png" alt="Aplicación 2">
+            <div>
+                <div class="application-title">ClinXtreme</div> <!-- Título de la aplicación -->
+                <div class="application-description">Es un optimizador avanzado que transforma tu experiencia de juego al aumentar tus fotogramas por segundo (FPS) 60/105.</div>
+            </div>
+            <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 9.99</button> <!-- Cambia el texto y el enlace -->
+        </div>
+        
+        <div class="application">
+            <img src="vanguard.png" alt="Aplicación 3">
+            <div>
+                <div class="application-title">Vanguard Toggler</div> <!-- Título de la aplicación -->
+                <div class="application-description">Help to enable/disable vanguard.</div>
+            </div>
+            <button class="application-button" onclick="window.location.href='https://modsfire.com/WS5BWP4D3tIrnM2'">Descargar</button> <!-- Cambia el texto y el enlace -->
+        </div>
+        
+        <div class="application">
+            <img src="core.png" alt="Aplicación 4">
+            <div>
+                <div class="application-title">Core Activator</div> <!-- Título de la aplicación -->
+                <div class="application-description">Es una aplicación que permite activar Windows de forma gratuita. Su función es realizar los cambios necesarios en el sistema operativo para obtener una activación permanente. (Se tiene que ejecutar como administrador)</div>
+            </div>
+            <button class="application-button" onclick="window.location.href='https://modsfire.com/KIqcMV1p99Yw4LL'">Descargar</button> <!-- Cambia el texto y el enlace -->
+        </div>
+    </div>
+
+    <a href="https://discord.gg/pdeeGJTZyD" target="_blank" class="discord-button">
+        <img src="ds.png" alt="Discord">
+    </a>
+
+</body>
+</html>
