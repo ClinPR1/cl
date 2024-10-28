@@ -13,6 +13,9 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centrar horizontalmente */
+            position: relative; /* Cambiado para permitir el posicionamiento absoluto */
+            min-height: 100vh; /* Asegura que el contenido ocupe al menos la altura de la ventana */
+            box-sizing: border-box; /* Incluye padding en el tamaño total del box */
         }
 
         .home-button {
@@ -97,7 +100,7 @@
         }
 
         .discord-button {
-            position: absolute; /* Posicionamiento absoluto */
+            position: fixed; /* Cambiado a fixed para mantenerlo en la esquina inferior */
             bottom: 20px; /* Espacio desde el fondo */
             right: 40px; /* 40 píxeles a la izquierda del borde derecho */
             background: none; /* Sin fondo */
