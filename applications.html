@@ -98,6 +98,21 @@
         .application-button:hover {
             background-color: rgba(255, 0, 60, 0.7); /* Color al pasar el ratón */
         }
+		
+		.filter-button {
+    background: none; /* Sin fondo */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambiar el cursor */
+    position: absolute; /* Posicionamiento absoluto */
+    top: 115px; /* Puedes ajustar la posición según prefieras */
+    right: 220px; /* Puedes ajustar la posición según prefieras */
+}
+
+.filter-button img {
+    width: 30px; /* Tamaño reducido */
+    height: 30px; /* Tamaño reducido */
+    object-fit: contain; /* Asegura que la imagen mantenga su aspecto sin distorsión */
+}
 
         .discord-button {
             position: fixed; /* Cambiado a fixed para mantenerlo en la esquina inferior */
@@ -114,13 +129,42 @@
         }
     </style>
 </head>
+<script>
+    let filterState = 0; // 0 = todas, 1 = pagas, 2 = gratis
+
+    function toggleFilter() {
+        const allApps = document.querySelectorAll('.application');
+        const paidApps = document.querySelectorAll('.application.paid');
+        const freeApps = document.querySelectorAll('.application.free');
+
+        if (filterState === 0) {  
+            // Mostrar solo las de pago
+            allApps.forEach(app => app.style.display = "none");
+            paidApps.forEach(app => app.style.display = "flex");
+            filterState = 1;
+        } else if (filterState === 1) {
+            // Mostrar solo las gratis
+            allApps.forEach(app => app.style.display = "none");
+            freeApps.forEach(app => app.style.display = "flex");
+            filterState = 2;
+        } else {
+            // Mostrar todas
+            allApps.forEach(app => app.style.display = "flex");
+            filterState = 0;
+        }
+    }
+</script>
 <body>
     <button class="home-button" onclick="window.location.href='index.html'">Home</button> <!-- Botón Home -->
+	
+<button class="filter-button" onclick="toggleFilter()">
+    <img src="filter.png" alt="Filtrar">
+</button>
 
     <div class="applications-container">
         <h1>Applications</h1> <!-- Título centrado -->
         
-        <div class="application">
+        <div class="application paid">
             <img src="clinxtreme.png" alt="Aplicación 2">
             <div>
                 <div class="application-title">ClinXtreme</div> <!-- Título de la aplicación -->
@@ -129,7 +173,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 3.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application paid">
             <img src="c3.png" alt="Aplicación 5">
             <div>
                 <div class="application-title">C.R.E.A.M</div> <!-- Título de la aplicación -->
@@ -138,7 +182,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 5.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application paid">
             <img src="cpremium.png" alt="Aplicación 1">
             <div>
                 <div class="application-title">ClinBoost PREMIUM</div> <!-- Título de la aplicación -->
@@ -147,7 +191,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 19.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application free">
             <img src="c.png" alt="Aplicación 1">
             <div>
                 <div class="application-title">ClinBoost</div> <!-- Título de la aplicación -->
@@ -156,7 +200,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/jEgad4w'"> Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
         
-        <div class="application">
+        <div class="application free">
             <img src="v3.png" alt="Aplicación 3">
             <div>
                 <div class="application-title">Vanguard Toggler</div> <!-- Título de la aplicación -->
@@ -165,7 +209,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/AY9m8k'">Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
         
-        <div class="application">
+        <div class="application free">
             <img src="core.png" alt="Aplicación 4">
             <div>
                 <div class="application-title">Core Activator</div> <!-- Título de la aplicación -->
@@ -174,7 +218,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/BGuJ2g'">Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application free">
             <img src="bot.png" alt="Aplicación 6">
             <div>
                 <div class="application-title">ClinBOT</div> <!-- Título de la aplicación -->
