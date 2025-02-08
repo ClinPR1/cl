@@ -9,7 +9,6 @@
         body {
             background-color: #262626; /* Fondo general */
             font-family: 'Rethink Sans', sans-serif;
-            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center; /* Centrar horizontalmente */
@@ -44,6 +43,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box; /* Evita que el padding cause desbordamiento */
         }
 
         h1 {
@@ -99,6 +99,52 @@
             background-color: rgba(255, 0, 60, 0.7); /* Color al pasar el ratón */
         }
 
+        .filter-button {
+            background: none; /* Sin fondo */
+            border: none; /* Sin borde */
+            cursor: pointer; /* Cambiar el cursor */
+            position: fixed; /* Fijo en la pantalla */
+            top: 20px; /* Espacio desde la parte superior */
+            right: 20px; /* Espacio desde el borde derecho */
+            z-index: 100; /* Asegura que se quede por encima de otros elementos */
+        }
+
+        .filter-button img {
+            width: 30px; /* Tamaño reducido */
+            height: 30px; /* Tamaño reducido */
+            object-fit: contain; /* Asegura que la imagen mantenga su aspecto sin distorsión */
+        }
+
+        #filter-options {
+            display: none;
+            position: fixed;
+            top: 50px; /* Posicionar un poco más abajo */
+            right: 20px; /* Ajustar posición desde el lado derecho */
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 200;
+            width: 250px; /* Ancho del panel de filtros más pequeño */
+        }
+
+        #filter-options button {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #filter-options button:hover {
+            background-color: rgba(255, 0, 60, 0.7);
+        }
+
         .discord-button {
             position: fixed; /* Cambiado a fixed para mantenerlo en la esquina inferior */
             bottom: 20px; /* Espacio desde el fondo */
@@ -114,13 +160,65 @@
         }
     </style>
 </head>
+<script>
+    let filterState = 0; // 0 = todas, 1 = pagas, 2 = gratis
+
+    // Función para abrir y cerrar el filtro
+    function toggleFilter() {
+        const filterPanel = document.getElementById('filter-options');
+        if (filterPanel.style.display === 'none' || filterPanel.style.display === '') {
+            filterPanel.style.display = 'block';
+        } else {
+            filterPanel.style.display = 'none';
+        }
+    }
+
+    // Aplicar el filtro según el tipo seleccionado
+    function applyFilter(filter) {
+        const allApps = document.querySelectorAll('.application');
+        const paidApps = document.querySelectorAll('.application.paid');
+        const freeApps = document.querySelectorAll('.application.free');
+        
+        allApps.forEach(app => app.style.display = "none"); // Ocultar todas las apps primero
+
+        if (filter === 1) {
+            paidApps.forEach(app => app.style.display = "flex");
+        } else if (filter === 2) {
+            freeApps.forEach(app => app.style.display = "flex");
+        } else {
+            allApps.forEach(app => app.style.display = "flex");
+        }
+
+        toggleFilter(); // Cerrar el panel después de aplicar el filtro
+    }
+
+    // Detecta clic fuera del panel de filtros para cerrarlo
+    window.addEventListener('click', function(event) {
+        const filterPanel = document.getElementById('filter-options');
+        const filterButton = document.querySelector('.filter-button');
+        
+        if (filterPanel.style.display === 'block' && !filterPanel.contains(event.target) && !filterButton.contains(event.target)) {
+            filterPanel.style.display = 'none';
+        }
+    });
+</script>
 <body>
     <button class="home-button" onclick="window.location.href='index.html'">Home</button> <!-- Botón Home -->
+	
+    <button class="filter-button" onclick="toggleFilter()">
+        <img src="filter.png" alt="Filtrar">
+    </button>
+
+    <div id="filter-options">
+        <button class="application-button" onclick="applyFilter(0)">Mostrar todas</button>
+        <button class="application-button" onclick="applyFilter(1)">Mostrar solo de pago</button>
+        <button class="application-button" onclick="applyFilter(2)">Mostrar solo gratis</button>
+    </div>
 
     <div class="applications-container">
         <h1>Applications</h1> <!-- Título centrado -->
         
-        <div class="application">
+        <div class="application paid">
             <img src="clinxtreme.png" alt="Aplicación 2">
             <div>
                 <div class="application-title">ClinXtreme</div> <!-- Título de la aplicación -->
@@ -129,7 +227,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 3.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application paid">
             <img src="c3.png" alt="Aplicación 5">
             <div>
                 <div class="application-title">C.R.E.A.M</div> <!-- Título de la aplicación -->
@@ -138,7 +236,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 5.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application paid">
             <img src="cpremium.png" alt="Aplicación 1">
             <div>
                 <div class="application-title">ClinBoost PREMIUM</div> <!-- Título de la aplicación -->
@@ -147,7 +245,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 19.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application free">
             <img src="c.png" alt="Aplicación 1">
             <div>
                 <div class="application-title">ClinBoost</div> <!-- Título de la aplicación -->
@@ -156,7 +254,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/jEgad4w'"> Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
         
-        <div class="application">
+        <div class="application free">
             <img src="v3.png" alt="Aplicación 3">
             <div>
                 <div class="application-title">Vanguard Toggler</div> <!-- Título de la aplicación -->
@@ -165,7 +263,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/AY9m8k'">Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
         
-        <div class="application">
+        <div class="application free">
             <img src="core.png" alt="Aplicación 4">
             <div>
                 <div class="application-title">Core Activator</div> <!-- Título de la aplicación -->
@@ -174,7 +272,7 @@
             <button class="application-button" onclick="window.location.href='https://ouo.io/BGuJ2g'">Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application">
+        <div class="application free">
             <img src="bot.png" alt="Aplicación 6">
             <div>
                 <div class="application-title">ClinBOT</div> <!-- Título de la aplicación -->
@@ -182,12 +280,10 @@
             </div>
             <button class="application-button" onclick="window.location.href='https://ouo.io/d9kiXA'">Descargar</button> <!-- Cambia el texto y el enlace -->
         </div>
-        
+
     </div>
-
-    <a href="https://discord.gg/pdeeGJTZyD" target="_blank" class="discord-button">
+    <button class="discord-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'">
         <img src="ds.png" alt="Discord">
-    </a>
-
+    </button>
 </body>
 </html>
