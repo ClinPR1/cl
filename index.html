@@ -6,51 +6,74 @@
     <title>ClinLab</title>
     <link rel="icon" type="image/png" href="ClinLab.png">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Rethink+Sans:ital,wght@0,400..800;1,400..800&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Rubik+Wet+Paint&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Rethink+Sans:wght@400..800&family=Roboto+Mono:wght@100..700&display=swap');
 
         :root {
             --button-margin: calc(10% + 7px);
         }
 
-        body {
-            background-image: url('gui.png');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: flex-start;
             padding-left: var(--button-margin);
             position: relative;
+            overflow: hidden;
+            background: #0f0f0f;
+            font-family: 'Rethink Sans', sans-serif;
+            animation: fadeInBody 1s ease-out; /* Animación de desvanecimiento */
+        }
+
+        @keyframes fadeInBody {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
         }
 
         .button {
             background-color: #ff003c;
             color: white;
-            font-family: 'Rethink Sans', sans-serif;
             font-size: 18px;
             border: none;
             border-radius: 40px;
             padding: 10px 25px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
             margin: 0 0 20px 0;
-            text-decoration: none; /* Asegúrate de quitar el subrayado en el enlace */
-            display: inline-block; /* Para que el enlace se comporte como un botón */
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.3);
         }
 
         .button:hover {
             background-color: #bf002f;
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.5);
         }
 
         .faq-button {
-            background-color: #181818;
+            background-color: #1a1a1a;
             color: white;
             border: none;
-            font-family: 'Rethink Sans', sans-serif;
             font-size: 18px;
             cursor: pointer;
             position: absolute;
@@ -58,21 +81,20 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 10;
-            transition: background-color 0.3s, filter 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
             border-radius: 40px;
             padding: 10px 25px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         }
 
         .faq-button:hover {
-            background-color: #4d4d4d;
-            filter: brightness(1.1);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            background-color: #2c2c2c;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
         }
 
         .discord-button {
             position: absolute;
-            bottom: 20px;
+            bottom: 60px;
             right: 40px;
             background: none;
             border: none;
@@ -80,21 +102,203 @@
         }
 
         .discord-button img {
+            width: 48px;
+            height: auto;
+        }
+
+        .tiktok-button {
+            position: absolute;
+            bottom: 120px;
+            right: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tiktok-button img {
             width: 50px;
             height: auto;
         }
+
+        .youtube-button {
+            position: absolute;
+            bottom: 165px;
+            right: 26px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .youtube-button img {
+            width: 80px;
+            height: auto;
+        }
+
+        .pc-image {
+            position: absolute;
+            top: 50%;
+            right: 100px;
+            transform: translateY(-50%);
+            width: 450px;
+            opacity: 6;
+            transition: opacity 0.3s;
+        }
+
+        .welcome-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            animation: fadeInText 1.5s ease-out;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .welcome-message h1 {
+            font-size: 48px;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            padding: 15px 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        footer ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #ff003c;
+        }
+
     </style>
     <script>
-        function redirectToFaq() {
-            window.location.href = 'faq.html'; // Redirige a faq.html
+        function playSound(url) {
+            const audio = new Audio(url);
+            audio.play();
         }
+
+        function redirectToFaq() {
+            window.location.href = 'FAQs.html';
+        }
+
+        function redirectToPrivacyPolicy() {
+            window.location.href = 'https://x';
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.createElement("canvas");
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext("2d");
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            window.addEventListener("resize", function () {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                createParticles();
+            });
+
+            let particles = [];
+            const numParticles = 100;
+
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < numParticles; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 1.2,
+                        vy: (Math.random() - 0.5) * 1.2,
+                        size: Math.random() * 3 + 1,
+                        opacity: Math.random() * 0.4 + 0.2,
+                        color: `rgba(${200 + Math.random() * 55}, ${200 + Math.random() * 55}, ${200 + Math.random() * 55}, ${Math.random() * 0.6 + 0.2})`
+                    });
+                }
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "rgba(15, 15, 15, 0.3)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                particles.forEach((p) => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color;
+                    ctx.fill();
+
+                    p.x += p.vx;
+                    p.y += p.vy;
+
+                    if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                    if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                });
+
+                requestAnimationFrame(drawParticles);
+            }
+
+            createParticles();
+            drawParticles();
+
+            // Barra de privacidad
+            let footer = document.querySelector('footer');
+            footer.addEventListener('click', redirectToPrivacyPolicy);
+        });
     </script>
 </head>
 <body>
-    <button class="faq-button" onclick="redirectToFaq()">Faq</button> <!-- Botón Faq -->
-    <a href="applications.html" class="button">Applications</a> <!-- Enlace a Applications -->
-    <a href="https://discord.gg/pdeeGJTZyD" target="_blank" class="discord-button">
+    <div class="welcome-message">
+        <h1>Bienvenido a ClinLab</h1>
+    </div>
+
+    <button class="faq-button" onclick="redirectToFaq()">FAQs</button>
+    <a href="applications.html" class="button" onmouseover="playSound('hover-sound.mp3')">Applications</a>
+    <a href="https://discord.gg/pdeeGJTZyD" target="_blank" class="discord-button" onmouseover="playSound('hover-sound.mp3')">
         <img src="ds.png" alt="Discord">
     </a>
+    <a href="https://www.tiktok.com/@clinlaboficial?is_from_webapp=1&sender_device=pc" target="_blank" class="tiktok-button" onmouseover="playSound('hover-sound.mp3')">
+        <img src="tiktok.png" alt="TikTok">
+    </a>
+    <a href="https://www.youtube.com/@ClinLabCL" target="_blank" class="youtube-button" onmouseover="playSound('hover-sound.mp3')">
+        <img src="youtube.png" alt="YouTube">
+    </a>
+
+    <img src="pc.png" alt="PC Image" class="pc-image">
+
+<footer>
+    <ul>
+        <li><a href="licencia.html">Privacy Policy</a></li>
+    </ul>
+</footer>
+
 </body>
 </html>
