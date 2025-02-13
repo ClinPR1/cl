@@ -274,6 +274,23 @@
             footer.addEventListener('click', redirectToPrivacyPolicy);
         });
     </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Función para detectar si el dispositivo es móvil
+        function isMobileDevice() {
+            return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        }
+
+        // Si es un dispositivo móvil, mostrar el mensaje
+        if (isMobileDevice()) {
+            const userResponse = confirm("¿Quieres cambiar a la versión móvil de la página?");
+            if (userResponse) {
+                // Redirigir a la página móvil
+                window.location.href = 'indexM.html';
+            }
+        }
+    });
+</script>
 </head>
 <body>
     <div class="welcome-message">
