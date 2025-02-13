@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Applications ClinLab</title>
+    <link rel="icon" type="image/png" href="ClinLab.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Rethink+Sans:wght@400..800&family=Roboto+Mono:wght@100..700&display=swap');
+        
+        :root {
+            --button-margin: calc(10% + 7px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0f0f0f;
+            font-family: 'Rethink Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .home-button {
+            background-color: transparent;
+            color: white;
+            border: 2px solid #ff003c;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background-color 0.3s, color 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .home-button:hover {
+            background-color: rgba(255, 0, 60, 0.3);
+            color: #ff003c;
+        }
+
+        .applications-container {
+            background-color: #262626;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .application {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-radius: 30px;
+            padding: 20px;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            font-size: 22px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .application img {
+            width: 80px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .application-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .application-description {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .application-button {
+            background-color: #ff003c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 15px 20px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+            margin-left: auto;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .application-button:hover {
+            background-color: rgba(255, 0, 60, 0.7);
+        }
+
+        .filter-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .filter-button img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        #filter-options {
+            display: none;
+            position: fixed;
+            top: 50px;
+            right: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 200;
+            width: 250px;
+        }
+
+        #filter-options button {
+            display: block;
+            margin-bottom: 10px;
+            color: white;
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #filter-options button:hover {
+            background-color: rgba(255, 0, 60, 0.7);
+        }
+
+        /* Redes sociales botones */
+        .discord-button {
+            position: fixed;
+            bottom: 10px;
+            right: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .discord-button img {
+            width: 48px;
+            height: auto;
+        }
+
+        .tiktok-button {
+            position: fixed;
+            bottom: 65px;
+            right: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tiktok-button img {
+            width: 50px;
+            height: auto;
+        }
+
+        .youtube-button {
+            position: fixed;
+            bottom: 110px;
+            right: 0px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .youtube-button img {
+            width: 80px;
+            height: auto;
+        }
+
+        /* Animación fadeInUp */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="window.location.href='indexM.html'">Home</button>
+    
+    <button class="filter-button" onclick="toggleFilter()">
+        <img src="filter.png" alt="Filtrar">
+    </button>
+
+    <div id="filter-options">
+        <button class="application-button" onclick="applyFilter(0)">Mostrar todas</button>
+        <button class="application-button" onclick="applyFilter(1)">Mostrar solo de pago</button>
+        <button class="application-button" onclick="applyFilter(2)">Mostrar solo gratis</button>
+    </div>
+
+    <div class="applications-container">
+        <h1>Applications</h1>
+               <div class="application paid">
+
+    </div>
+
+    <button class="discord-button" onclick="window.open('https://discord.gg/pdeeGJTZyD', '_blank')">
+        <img src="ds.png" alt="Discord">
+    </button>
+
+    <button class="tiktok-button" onclick="window.open('https://www.tiktok.com/@clinlaboficial', '_blank')">
+        <img src="tiktok.png" alt="TikTok">
+    </button>
+
+    <button class="youtube-button" onclick="window.open('https://www.youtube.com/@ClinLabCL', '_blank')">
+        <img src="youtube.png" alt="YouTube">
+    </button>
+
+    <script>
+        function toggleFilter() {
+            var filterOptions = document.getElementById('filter-options');
+            filterOptions.style.display = filterOptions.style.display === 'none' || filterOptions.style.display === '' ? 'block' : 'none';
+        }
+
+        function applyFilter(filter) {
+            var applications = document.querySelectorAll('.application');
+            applications.forEach(function(application) {
+                if (filter === 0) {
+                    application.style.display = 'flex';
+                } else if (filter === 1 && application.classList.contains('paid')) {
+                    application.style.display = 'flex';
+                } else if (filter === 2 && !application.classList.contains('paid')) {
+                    application.style.display = 'flex';
+                } else {
+                    application.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

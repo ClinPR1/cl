@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs ClinLab</title>
+    <link rel="icon" type="image/png" href="ClinLab.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Rethink+Sans:wght@400..800&family=Roboto+Mono:wght@100..700&display=swap');
+        
+        body {
+            background-color: #0f0f0f; /* Fondo general */
+            font-family: 'Rethink Sans', sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centrar horizontalmente */
+        }
+
+        .home-button {
+            background-color: transparent; /* Fondo transparente */
+            color: white; /* Texto blanco */
+            border: 2px solid #ff003c; /* Borde del botón */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 10px 20px; /* Espaciado interno */
+            font-size: 20px; /* Tamaño de fuente del botón */
+            cursor: pointer; /* Cambiar cursor al pasar sobre el botón */
+            margin-bottom: 20px; /* Espacio debajo del botón */
+            transition: background-color 0.3s, color 0.3s; /* Transición suave */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .home-button:hover {
+            background-color: rgba(255, 0, 60, 0.3); /* Color al pasar el ratón */
+            color: #ff003c; /* Cambiar color de texto al pasar el ratón */
+        }
+
+        .faq-container {
+            background-color: #262626; /* Fondo gris para el contenedor de preguntas */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%; /* Ancho del contenedor */
+        }
+
+        h1 {
+            text-align: center; /* Centrar el título */
+            margin-bottom: 20px; /* Espacio debajo del título */
+            font-size: 24px; /* Tamaño de fuente aumentado */
+            color: white; /* Color del título */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.6s forwards;
+        }
+
+        .question {
+            background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+            color: #ffffff; /* Texto blanco */
+            border-radius: 30px; /* Bordes redondeados */
+            padding: 15px;
+            margin: 10px 0; /* Espacio entre preguntas */
+            cursor: pointer; /* Cambiar cursor al pasar sobre la pregunta */
+            transition: background-color 0.3s; /* Transición suave */
+            font-size: 18px; /* Tamaño de fuente de la pregunta */
+        }
+
+        .question:hover {
+            background-color: rgba(255, 255, 255, 0.4); /* Color al pasar el ratón */
+        }
+
+        .answer {
+            display: none; /* Inicialmente oculto */
+            padding: 10px;
+            margin-top: 5px; /* Espacio entre la pregunta y la respuesta */
+            background-color: rgba(255, 255, 255, 0.2); /* Fondo igual que las preguntas */
+            border-radius: 10px; /* Bordes redondeados */
+            color: #ffffff; /* Texto blanco */
+        }
+
+        /* Animación fadeInUp */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Redes sociales botones */
+        .discord-button {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .discord-button img {
+            width: 48px;
+            height: auto;
+        }
+
+        .tiktok-button {
+            position: fixed;
+            bottom: 65px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tiktok-button img {
+            width: 50px;
+            height: auto;
+        }
+
+        .youtube-button {
+            position: fixed;
+            bottom: 110px;
+            right: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .youtube-button img {
+            width: 80px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <button class="home-button" onclick="window.location.href='indexM.html'">Home</button> <!-- Botón Home -->
+
+    <div class="faq-container">
+        <h1>FAQs</h1> <!-- Título centrado -->
+        
+        <div class="question">Premium VS Standard</div>
+        <div class="answer">Las aplicaciones premium son definitivamente superiores a las estándar. Tienen muchas más funciones personalizables, reciben actualizaciones más frecuentes y, en general, ofrecen una mejor experiencia. Si estás considerando utilizar mis aplicaciones y tienes el presupuesto para la versión premium, te recomiendo que la elijas sin dudar. Sin embargo, las versiones estándar siguen siendo herramientas excelentes, con muchas optimizaciones útiles y son una alternativa más asequible para quienes buscan calidad sin gastar demasiado.</div>
+
+        <div class="question">¿Puedes pasarle aplicaciones de pago a tus amigos?</div>
+        <div class="answer">Solo pueden ser utilizadas en tu PC y no se pueden compartir fácilmente con otros. Cada licencia está diseñada para un solo dispositivo.</div>
+
+        <div class="question">¿Por qué debo abrir un archivo y enviártelo al comprar una app?</div>
+        <div class="answer">El archivo generado contiene información encriptada de tu sistema operativo, lo que asegura que la app solo funcione en tu equipo y no en otros. Este es un método antipiratería para proteger la app.</div>
+
+        <div class="question">¿Dónde compro las aplicaciones/servicios de pago?</div>
+        <div class="answer">Haz clic en el botón de "Comprar". Esto te llevará a nuestro servidor de Discord, donde deberás ir al canal "contact-us" y abrir un ticket explicando lo que deseas.</div>
+
+        <div class="question">¿Tiene virus?</div>
+        <div class="answer">Algunas aplicaciones pueden ser detectadas como virus por Windows porque no firmo los archivos .exe. Además, algunas aplicaciones pueden hacer cambios en el sistema que son considerados sospechosos. Esto puede resultar en falsos positivos, donde el antivirus identifica erróneamente un archivo legítimo como un virus.</div>
+        
+        <div class="question">¿En qué versiones de Windows funcionan las aplicaciones/servicios?</div>
+        <div class="answer">Algunas aplicaciones y servicios funcionan a partir de Windows 7, pero la mayoría están optimizados para Windows 10. Te recomiendo usar Windows 10 para asegurar la mejor compatibilidad y rendimiento con nuestras aplicaciones.</div>
+    </div>
+
+    <a href="https://discord.gg/pdeeGJTZyD" target="_blank" class="discord-button">
+        <img src="ds.png" alt="Discord">
+    </a>
+	
+	<a href="https://www.tiktok.com/@clinlaboficial" target="_blank" class="tiktok-button">
+        <img src="tiktok.png" alt="TikTok">
+    </a>
+	
+	<a href="https://www.youtube.com/@ClinLabCL" target="_blank" class="youtube-button">
+        <img src="youtube.png" alt="Youtube">
+    </a>
+
+    <script>
+        // Obtener todas las preguntas
+        const questions = document.querySelectorAll('.question');
+
+        // Añadir evento de clic a cada pregunta
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling; // Obtener la respuesta correspondiente
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block'; // Alternar entre mostrar/ocultar
+            });
+        });
+    </script>
+</body>
+</html>
+	
