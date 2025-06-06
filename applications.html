@@ -6,6 +6,30 @@
     <title>Applications ClinLab</title>
     <link rel="icon" type="image/png" href="ClinLab.png">
     <style>
+.fluxara-special {
+    border: 2px solid gold;
+    box-shadow: 0 0 15px gold, 0 0 30px gold;
+    animation: glow 2s infinite alternate;
+    background-color: #1a1a1a; /* fondo más oscuro para destacar el brillo */
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    transition: transform 0.3s ease;
+}
+
+.fluxara-special:hover {
+    transform: scale(1.02);
+}
+
+@keyframes glow {
+    from {
+        box-shadow: 0 0 10px gold, 0 0 20px gold;
+    }
+    to {
+        box-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700;
+    }
+}
+</style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Kanit:wght@100;200;300;400;500;600;700;800;900&family=Rethink+Sans:wght@400..800&family=Roboto+Mono:wght@100..700&display=swap');
         
         :root {
@@ -267,7 +291,7 @@
             <button class="application-button" onclick="window.location.href='https://discord.gg/pdeeGJTZyD'"> 24.99</button> <!-- Cambia el texto y el enlace -->
         </div>
 
-        <div class="application free">
+        <div class="application fluxara-special">
             <img src="FLUXARA.png" alt="Aplicación 1">
             <div>
                 <div class="application-title">Fluxara</div> <!-- Título de la aplicación -->
