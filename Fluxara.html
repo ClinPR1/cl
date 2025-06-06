@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fluxara — Optimización Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-smooth: always;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    body {
+      background: #0B132B;
+      color: #EEE;
+      font-family: 'Montserrat', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a {
+      color: #D4AF37;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #fff;
+    }
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      background: rgba(11, 19, 43, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #2E2E2E;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 999;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #D4AF37;
+      letter-spacing: 3px;
+      cursor: default;
+      user-select: none;
+      text-transform: uppercase;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      font-weight: 300;
+      font-size: 1rem;
+    }
+    nav ul li {
+      cursor: pointer;
+      position: relative;
+    }
+    nav ul li::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: #D4AF37;
+      left: 0;
+      bottom: -6px;
+      transition: width 0.3s ease;
+    }
+    nav ul li:hover::after {
+      width: 100%;
+    }
+    main {
+      flex: 1;
+      margin-top: 80px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 70px;
+    }
+    /* Hero Section */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px 60px;
+      color: #D4AF37;
+      user-select: none;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 3.5rem;
+      letter-spacing: 6px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 300;
+      max-width: 550px;
+      margin: 0 auto 40px auto;
+      color: #EEE;
+    }
+    .btn-download {
+      background: none;
+      border: 2px solid #D4AF37;
+      color: #D4AF37;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 14px 36px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      user-select: none;
+      box-shadow: 0 0 12px #D4AF37;
+    }
+    .btn-download:hover {
+      background: #D4AF37;
+      color: #0B132B;
+      box-shadow: 0 0 18px #FFD700;
+      transform: translateY(-3px);
+    }
+    /* Features */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 50px;
+      color: #EEE;
+    }
+    .feature-item {
+      background: rgba(212,175,55,0.08);
+      border: 1px solid #D4AF37;
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 0 10px #D4AF37;
+      transition: transform 0.3s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .feature-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 25px #FFD700;
+    }
+    .feature-item svg {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 20px;
+      fill: #D4AF37;
+    }
+    .feature-item h3 {
+      margin-bottom: 12px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+    }
+    .feature-item p {
+      font-weight: 300;
+      font-size: 1rem;
+      color: #EEE;
+    }
+    /* FAQ */
+    .faq {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #EEE;
+    }
+    .faq h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      color: #D4AF37;
+      text-align: center;
+      user-select: none;
+    }
+    .faq-item {
+      border-bottom: 1px solid #444;
+      padding: 18px 0;
+    }
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      position: relative;
+      padding-right: 25px;
+      user-select: none;
+    }
+    .faq-question::after {
+      content: "+";
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 1.5rem;
+      color: #D4AF37;
+      transition: transform 0.3s ease;
+    }
+    .faq-question.active::after {
+      content: "-";
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      font-weight: 300;
+      margin-top: 10px;
+      color: #ddd;
+    }
+    .faq-answer.open {
+      max-height: 200px;
+    }
+    /* Footer */
+    footer {
+      background: #0B132B;
+      border-top: 1px solid #2E2E2E;
+      text-align: center;
+      padding: 20px;
+      color: #555;
+      font-size: 0.9rem;
+      user-select: none;
+    }
+    footer a {
+      color: #D4AF37;
+      margin: 0 8px;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.4rem;
+        letter-spacing: 4px;
+      }
+      .btn-download {
+        padding: 12px 28px;
+        font-size: 1rem;
+      }
+      nav ul {
+        gap: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">FLUXARA</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#features">Características</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#download">Descarga</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="hero" aria-label="Sección principal">
+      <h1>FLUXARA</h1>
+      <p>Donde la excelencia en rendimiento se encuentra con el arte de la simplicidad.</p>
+      <button class="btn-download" onclick="window.location.href='https://ouo.io/WohLiP'">Descargar Ahora</button>
+    </section>
+
+    <section class="features" id="features" aria-label="Características">
+      <div class="feature-item" tabindex="0">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2L15 8H9L12 2Z M12 22L9 16H15L12 22Z M2 12L8 15V9L2 12Z M22 12L16 9V15L22 12Z"></path></svg>
+        <h3>Optimización Superior</h3>
+        <p>Maximiza el rendimiento de tu PC con un proceso fluido y eficiente.</p>
+      </div>
+      <div class="feature-item" tabindex="0">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7 3 3 7 3 12s4 9 9 9 9-4 9-9-4-9-9-9z M12 17a5 5 0 110-10 5 5 0 010 10z"></path></svg>
+        <h3>Interfaz Minimalista</h3>
+        <p>Diseñada para usuarios que buscan eficiencia y elegancia sin complicaciones.</p>
+      </div>
+      <div class="feature-item" tabindex="0">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21 16.54 13.97 22 9.24 14.81 8.63 12 2 9.19 8.63 2 9.24 7.46 13.97 5.82 21z"></path></svg>
+        <h3>Soporte Premium</h3>
+        <p>Atención dedicada para usuarios que exigen lo mejor en cada detalle.</p>
+    </section>
+
+    <section class="faq" id="faq" aria-label="Preguntas frecuentes">
+      <h2>Preguntas Frecuentes</h2>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">¿Fluxara es compatible con Windows 10 y 11?</div>
+        <div class="faq-answer">Sí, Fluxara está optimizado para funcionar perfectamente en Windows 10 y 11.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">¿Puedo usar Fluxara en una PC de gama baja?</div>
+        <div class="faq-answer">Sí, Fluxara es eficiente y mejora el rendimiento incluso en hardware modesto.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" tabindex="0">¿Tiene algún costo Fluxara?</div>
+        <div class="faq-answer">Por ahora es totalmente gratuito, con planes de versión premium próximamente.</div>
+      </div>
+    </section>
+
+    <section id="download" aria-label="Sección de descarga" style="text-align:center; padding:60px 20px;">
+      <h2 style="color:#D4AF37; font-family:'Playfair Display', serif; margin-bottom: 24px;">Descarga Fluxara</h2>
+      <p style="color:#EEE; font-weight:300; max-width: 480px; margin: 0 auto 20px;">
+        Descarga Fluxara desde esta sección.
+      </p>
+      <button class="btn-download" onclick="window.location.href='https://ouo.io/WohLiP'">Descargar Ahora</button>
+    </section>
+
+    <section id="contact" aria-label="Contacto" style="text-align:center; padding:40px 20px; color:#EEE;">
+      <h2 style="color:#D4AF37; font-family:'Playfair Display', serif; margin-bottom: 20px;">Contacto</h2>
+      <p>¿Tienes preguntas? Escríbenos a <a href="mailto:contacto@fluxara.com">fluxaracl@gmail.com</a></p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Fluxara. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    // FAQ toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('active');
+        const answer = q.nextElementSibling;
+        if(answer.classList.contains('open')){
+          answer.classList.remove('open');
+          answer.style.maxHeight = null;
+        } else {
+          answer.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      });
+      // Accessibility keyboard toggle
+      q.addEventListener('keydown', (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          q.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
