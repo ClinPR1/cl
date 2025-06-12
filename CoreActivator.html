@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Core Activator</title>
+  <link rel="icon" type="image/png" href="cav2.png">
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #111;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    nav a {
+      color: #ccc;
+      margin-left: 30px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .hero {
+      background: url('https://wallpapersok.com/images/hd/best-dark-microsoft-logo-hbos29jwz5dkvl16.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: brightness(0.6);
+    }
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease;
+    }
+    .hero p {
+      font-size: 20px;
+      max-width: 600px;
+      animation: fadeIn 3s ease;
+    }
+    .hero a.button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background 0.3s;
+      display: inline-block;
+    }
+    .hero a.button:hover {
+      background: #005fa3;
+    }
+    .hero a.preview-button {
+      margin-top: 15px;
+      padding: 12px 26px;
+      font-size: 16px;
+      background: transparent;
+      border: 2px solid #0078d4;
+      color: #0078d4;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+    .hero a.preview-button:hover {
+      background: #0078d4;
+      color: white;
+    }
+    section {
+      padding: 60px 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      width: 200px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    .faq-item {
+      margin-bottom: 10px;
+    }
+    .faq-question {
+      background: #222;
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      background: #181818;
+      padding: 0 15px;
+    }
+    .faq-item.active .faq-answer {
+      max-height: 200px;
+      padding: 15px;
+    }
+    footer {
+      background: #111;
+      color: #888;
+      text-align: center;
+      padding: 20px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    #discord-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #7289da;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(114,137,218,0.4);
+      transition: background-color 0.3s ease;
+      font-family: 'Segoe UI', sans-serif;
+      z-index: 1000;
+    }
+    #discord-btn:hover {
+      background-color: #5b6eae;
+    }
+
+    /* Galería */
+    .preview-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .preview-gallery img {
+      width: 300px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .preview-gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    /* Modal */
+    #imageModal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.85);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+    #modalImage {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px black;
+    }
+    #closeModal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Core Activator</h1>
+    <nav>
+      <a href="#caracteristicas">Características</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Activación permanente y gratuita</h2>
+    <p>Compatible con todas las ediciones de Windows 10 y 11, desde Home hasta Pro. Sencillo, seguro y efectivo.</p>
+    <a class="button" href="https://modsfire.com/XQZYl1EShYNTrt9" target="_blank">Descargar ahora</a>
+    <a class="preview-button" href="#preview">Ver Preview</a>
+  </div>
+
+  <section id="caracteristicas">
+    <h2>Características destacadas</h2>
+    <div class="cards">
+      <div class="card">Activación permanente</div>
+      <div class="card">Gratis para siempre</div>
+      <div class="card">Seguro y sin virus</div>
+      <div class="card">Sin conexión requerida</div>
+      <div class="card">Fácil de usar</div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>Preguntas Frecuentes</h2>
+    <div class="faq-item">
+      <div class="faq-question">¿Es seguro usar Core Activator?</div>
+      <div class="faq-answer">Sí, el activador ha sido probado y no contiene ningún tipo de virus o malware.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">¿Qué versiones de Windows son compatibles?</div>
+      <div class="faq-answer">Es compatible con todas las ediciones de Windows 10 y 11.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">¿La activación es permanente?</div>
+      <div class="faq-answer">Sí, Core Activator realiza una activación que permanece tras reinicios y actualizaciones.</div>
+    </div>
+  </section>
+  
+  <section id="preview">
+    <h2>Vista previa de CoreActivator</h2>
+    <div class="preview-gallery">
+      <img src="foto1.jpeg" alt="Captura 1">
+      <img src="foto2.jpeg" alt="Captura 2">
+    </div>
+  </section>
+
+  <footer>
+    <p>Core Activator no está afiliado a Microsoft. Uso bajo su propio riesgo. Solo para propósitos personales.</p>
+  </footer>
+
+  <a href="https://discord.gg/pdeeGJTZyD" target="_blank" id="discord-btn">Discord</a>
+
+  <!-- Modal de imagen -->
+  <div id="imageModal">
+    <span id="closeModal">&times;</span>
+    <img id="modalImage" src="" />
+  </div>
+
+  <script>
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // Modal de imagen
+    document.querySelectorAll('.preview-gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        document.getElementById('modalImage').src = img.src;
+        document.getElementById('imageModal').style.display = 'flex';
+      });
+    });
+    document.getElementById('closeModal').addEventListener('click', () => {
+      document.getElementById('imageModal').style.display = 'none';
+    });
+    document.getElementById('imageModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('imageModal').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
